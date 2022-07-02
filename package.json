@@ -1,0 +1,85 @@
+{
+  "name": "awesome-oss",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "library"
+  ],
+  "author": {
+    "name": "fujia",
+    "url": "https://github.com/fushenguang",
+    "email": "fujia.site@outlook.com"
+  },
+  "main": "lib/index.js",
+  "module": "lib/awesome-oss.esm.js",
+  "umd": "lib/awesome-oss.min.js",
+  "esnext": "lib/awesome-oss.esnext.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "lint": "eslint --ext ts 'src/**/*.ts'",
+    "docs": "typedoc",
+    "docs:publish": "sh scripts/docs-publish.sh",
+    "build": "rimraf dist && tsc --module commonjs && rollup -c rollup.config.ts",
+    "start": "rollup -c rollup.config.ts -w",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:prod": "npm run lint && npm run test -- --no-cache",
+    "deploy-docs": "scripts/gh-pages-publish.js",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "prepare": "husky install",
+    "travis-deploy-once": "travis-deploy-once",
+    "prerelease": "npm run build",
+    "release": "sh scripts/release.sh"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "npm run lint"
+    ]
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "coveralls": "^3.1.1",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.32.1",
+    "shelljs": "^0.8.5",
+    "travis-deploy-once": "^5.0.11",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
+    "tslib": "^2.4.0",
+    "typedoc": "^0.23.2",
+    "typescript": "^4.7.4"
+  }
+}
