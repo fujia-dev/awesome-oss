@@ -13,3 +13,4 @@ yarn.lock
 dist
 compiled
 coverage
+.env
