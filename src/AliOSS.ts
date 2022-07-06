@@ -21,9 +21,17 @@ export class AliOSS extends AbstractOSS {
     });
   }
 
-  async createBucket(bucketName: string, options: PutBucketOptions) {
+  /**
+   * @desc create a bucket
+   *
+   * @param {string} bucketName
+   * @param {PutBucketOptions} options https://help.aliyun.com/document_detail/31959.htm?spm=a2c4g.11186623.0.0.e0511e5876vCyj#doc-api-Oss-PutBucket
+   * @memberof AliOSS
+   */
+  async createBucket(bucketName: string, options?: PutBucketOptions) {
     try {
       const result = await this.client?.putBucket(bucketName, options);
+      console.log(result);
     } catch (err) {
       console.log(err);
     }

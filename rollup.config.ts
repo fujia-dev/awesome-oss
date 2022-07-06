@@ -1,14 +1,12 @@
 // import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 // import sourceMaps from 'rollup-plugin-sourcemaps';
 import ts from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
-import json from 'rollup-plugin-json';
+import json from '@rollup/plugin-json';
 
 import pkg from './package.json';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const pkg = require('./package.json');
 const input = './src/index.ts';
 
 export default [
@@ -19,24 +17,18 @@ export default [
         file: pkg.main,
         name: pkg.name,
         format: 'cjs',
-        exports: 'named' // export mode
+        exports: 'named', // export mode
       },
       {
         file: pkg.module,
         format: 'esm',
-        exports: 'named'
-      },
-      {
-        file: '',
-        format: 'umd',
         exports: 'named',
-        name: '', // specify the property name of window
-      }
+      },
     ],
     // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
     external: [],
     watch: {
-      include: 'src/**'
+      include: 'src/**',
     },
     plugins: [
       // Allow json resolution
@@ -48,9 +40,9 @@ export default [
         tsconfigOverride: {
           compilerOptions: {
             module: 'esnext',
-            target: 'es5'
-          }
-        }
+            target: 'es5',
+          },
+        },
       }),
       // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
       commonjs(),
@@ -62,13 +54,13 @@ export default [
 
       // Resolve source maps to the original source
       // sourceMaps(),
-    ]
+    ],
   },
   {
     input,
     output: {
       file: pkg.esnext,
-      format: 'esm'
+      format: 'esm',
     },
     plugins: [
       ts({
@@ -78,11 +70,11 @@ export default [
             module: 'esnext',
             target: 'esnext',
             declaration: true,
-            declarationDir: 'dist'
-          }
-        }
+            declarationDir: 'dist',
+          },
+        },
       }),
       terser(),
-    ]
-  }
-]
+    ],
+  },
+];

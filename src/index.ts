@@ -1,10 +1,12 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 
 import { AliOSS } from './AliOSS';
 import { QiniuOSS } from './QiniuOSS';
 import { TencentOSS } from './TencentOSS';
 
 import type { AliOSSConfig, OSSConfigs, OSSTypes } from './interface';
+
+dotenv.config();
 
 export class AwesomeOSS {
   ossType: OSSTypes;
