@@ -17,3 +17,13 @@ export interface AliOSSConfig {
 export interface OSSConfigs {
   ali: AliOSSConfig;
 }
+
+export interface IAwesomeOSS {
+  initClient: VoidFunction;
+  // create new bucket
+  createBucket: (bucketName: string, options: any) => Promise<any>;
+  //  query all buckets
+  queryBuckets: (query: any, options: any) => Promise<any>;
+  // delete a bucket
+  delBucket: VoidFunction;
+}

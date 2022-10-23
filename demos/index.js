@@ -11,4 +11,10 @@ const aliClient = new AwesomeOSS({
   },
 }).create();
 
-aliClient.createBucket('desktop-apps', {});
+(async () => {
+  try {
+    await aliClient.createBucket('awesome-oss-demos', {});
+
+    await aliClient.createFolder('MyImages');
+  } catch (error) {}
+})();

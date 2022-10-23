@@ -1,13 +1,13 @@
-import { AbstractOSS } from './AbstractOSS';
+import { IAwesomeOSS } from './interface';
 
-export class QiniuOSS extends AbstractOSS {
-  init(): void {
+export class QiniuOSS implements IAwesomeOSS {
+  initClient(): void {
     throw new Error('Method not implemented.');
   }
-  queryBuckets(): void {
-    throw new Error('Method not implemented.');
+  queryBuckets() {
+    return Promise.resolve();
   }
-  delBucket(): void {
+  delBucket() {
     throw new Error('Method not implemented.');
   }
   async createBucket(bucketName: string, options: any) {
